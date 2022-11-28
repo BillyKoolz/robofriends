@@ -3,17 +3,21 @@ import ReactDOM from 'react-dom/client';
 import {Provider} from 'react-redux';
 //import {createStore} from 'redux'; DEPRECATED
 import { configureStore } from '@reduxjs/toolkit';
-import {searchRobots} from './reducers';
+import {searchRobots, requestRobots} from './reducers';
 import './index.css';
 import App from './containers/App';
 import reportWebVitals from './reportWebVitals';
 import 'tachyons';
-import {createLogger} from 'redux-logger';
+import {createLogger} from 'redux-logger';      //  For logging prev state/action/next state in the console
+import thunkMiddleWare from 'redux-thunk';
 
 const logger = createLogger();
 const store = configureStore({
-  reducer: searchRobots,
-  middleware: [logger],
+  reducer: {
+    searchRobots: searchRobots, 
+    requestRobots: requestRobots
+  },
+  middleware: [thunkMiddleWare, logger],
 });
 
 
