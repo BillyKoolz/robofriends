@@ -8,9 +8,12 @@ import './index.css';
 import App from './containers/App';
 import reportWebVitals from './reportWebVitals';
 import 'tachyons';
+import {createLogger} from 'redux-logger';
 
+const logger = createLogger();
 const store = configureStore({
   reducer: searchRobots,
+  middleware: [logger],
 });
 
 
